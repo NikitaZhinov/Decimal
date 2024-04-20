@@ -1,6 +1,6 @@
-#include "../s21_decimal.h"
+#include "../decimal.h"
 
-int s21_from_int_to_decimal(int src, s21_decimal *dst) {
+int from_int_to_decimal(int src, decimal *dst) {
   int err = 0;
 
   if (dst == NULL) {
@@ -13,7 +13,7 @@ int s21_from_int_to_decimal(int src, s21_decimal *dst) {
       src = -src;
     }
 
-    if (src > S21_MAX_INT) {
+    if (src > MAX_INT) {
       err = 1;
     } else {
       dst->bits[0] = src;

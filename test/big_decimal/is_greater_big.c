@@ -1,12 +1,12 @@
 #include "big_decimal.h"
 
 START_TEST(is_greater_big_1) {
-  s21_big_decimal num1 = {
+  big_decimal num1 = {
       {0, 0, 10100, 0, 0, 0, 0b00000000000000100000000000000000}};
-  s21_big_decimal num2 = {
+  big_decimal num2 = {
       {0, 0, 101, 0, 0, 0, 0b00000000000000110000000000000000}};
 
-  int exepted_result = 1, real_result = s21_is_greater_big(num1, num2);
+  int exepted_result = 1, real_result = is_greater_big(num1, num2);
 
   // for (int i = 0; i < COUNT_BITS_BIG_DECIMAL; i++) {
   //   real_result = (num1.bits[i] == num2.bits[i]);
@@ -17,7 +17,7 @@ START_TEST(is_greater_big_1) {
 END_TEST
 
 START_TEST(is_greater_maxscale_big_1) {
-  s21_big_decimal num = {
+  big_decimal num = {
       {0, 0, 10100, 0, 0, 0, 0b00000000000000100000000000000000}};
 
   int exepted_result = -1, real_result = is_greater_maxscale_big(&num);

@@ -1,6 +1,6 @@
-#include "../s21_decimal.h"
+#include "../decimal.h"
 
-int s21_from_float_to_decimal(float src, s21_decimal *dst) {
+int from_float_to_decimal(float src, decimal *dst) {
   int err = OK;
 
   if (dst) {
@@ -22,7 +22,7 @@ int s21_from_float_to_decimal(float src, s21_decimal *dst) {
         temp = src * (long int)(pow(10, scale));
       }
 
-      s21_from_int_to_decimal(temp, dst);
+      from_int_to_decimal(temp, dst);
 
       if (sign) {
         set_sign(dst, 1);

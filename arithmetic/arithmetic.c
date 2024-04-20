@@ -1,13 +1,13 @@
 #include "arithmetic.h"
 
-int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+int add(decimal value_1, decimal value_2, decimal *result) {
   int err = OK;
 
-  s21_big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
+  big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
   fill_big_decimal(&value_1, &number_1);
   fill_big_decimal(&value_2, &number_2);
 
-  err = s21_add_big(number_1, number_2, &result_big);
+  err = add_big(number_1, number_2, &result_big);
   if (!!result) {
     copy_from_big_decimal_to_decimal(result_big, result);
     if (is_zero(*result)) result->bits[3] = 0;
@@ -16,14 +16,14 @@ int s21_add(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   return err;
 }
 
-int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+int sub(decimal value_1, decimal value_2, decimal *result) {
   int err = OK;
 
-  s21_big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
+  big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
   fill_big_decimal(&value_1, &number_1);
   fill_big_decimal(&value_2, &number_2);
 
-  err = s21_sub_big(number_1, number_2, &result_big);
+  err = sub_big(number_1, number_2, &result_big);
   if (!!result) {
     copy_from_big_decimal_to_decimal(result_big, result);
     if (is_zero(*result)) result->bits[3] = 0;
@@ -32,14 +32,14 @@ int s21_sub(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   return err;
 }
 
-int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+int mul(decimal value_1, decimal value_2, decimal *result) {
   int err = OK;
 
-  s21_big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
+  big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
   fill_big_decimal(&value_1, &number_1);
   fill_big_decimal(&value_2, &number_2);
 
-  err = s21_mul_big(number_1, number_2, &result_big);
+  err = mul_big(number_1, number_2, &result_big);
   if (!!result) {
     copy_from_big_decimal_to_decimal(result_big, result);
     if (is_zero(*result)) result->bits[3] = 0;
@@ -48,7 +48,7 @@ int s21_mul(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   return err;
 }
 
-int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
+int div(decimal value_1, decimal value_2, decimal *result) {
   int err = OK;
 
   if (is_zero(value_2))
@@ -56,11 +56,11 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   else if (is_zero(value_1)) {
     if (!!result) to_empty(result);
   } else {
-    s21_big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
+    big_decimal number_1 = {{0}}, number_2 = {{0}}, result_big = {{0}};
     fill_big_decimal(&value_1, &number_1);
     fill_big_decimal(&value_2, &number_2);
 
-    err = s21_div_big(number_1, number_2, &result_big);
+    err = div_big(number_1, number_2, &result_big);
     if (!!result) {
       copy_from_big_decimal_to_decimal(result_big, result);
       if (is_zero(*result)) result->bits[3] = 0;
@@ -70,8 +70,8 @@ int s21_div(s21_decimal value_1, s21_decimal value_2, s21_decimal *result) {
   return err;
 }
 
-int s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                s21_big_decimal *result) {
+int add_big(big_decimal value_1, big_decimal value_2,
+                big_decimal *result) {
   to_empty_big(result);
 
   int err = OK;
@@ -85,10 +85,10 @@ int s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
     err = round_number(result, get_scale_big(value_1), sign_res);
   } else if (get_sign_big(value_1) && !get_sign_big(value_2)) {
     set_sign_big(&value_1, 0);
-    err = s21_sub_big(value_2, value_1, result);  // 2 - 1
+    err = sub_big(value_2, value_1, result);  // 2 - 1
   } else if (!get_sign_big(value_1) && get_sign_big(value_2)) {
     set_sign_big(&value_2, 0);
-    err = s21_sub_big(value_1, value_2, result);  // 1 - 2
+    err = sub_big(value_1, value_2, result);  // 1 - 2
   } else if (get_sign_big(value_1) && get_sign_big(value_2)) {
     simple_add(value_1, value_2, result);  // -(1 + 2)
     sign_res = 1;
@@ -98,8 +98,8 @@ int s21_add_big(s21_big_decimal value_1, s21_big_decimal value_2,
   return err;
 }
 
-int s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                s21_big_decimal *result) {
+int sub_big(big_decimal value_1, big_decimal value_2,
+                big_decimal *result) {
   to_empty_big(result);
 
   scale_alignment(&value_1, &value_2);
@@ -107,7 +107,7 @@ int s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
   int sign_res = 0;
 
   if (!get_sign_big(value_1) && !get_sign_big(value_2)) {
-    if (s21_is_less_big(value_2, value_1))  // 1 > 2 -> 1 - 2
+    if (is_less_big(value_2, value_1))  // 1 > 2 -> 1 - 2
       simple_sub(value_1, value_2, result);
     else {  // 1 < 2 -> -(2 - 1)
       simple_sub(value_2, value_1, result);
@@ -118,7 +118,7 @@ int s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
     set_sign_big(&value_1, 0);
     set_sign_big(&value_2, 0);
 
-    if (s21_is_less_big(value_1, value_2))  // |1| < |2| -> 2 - 1
+    if (is_less_big(value_1, value_2))  // |1| < |2| -> 2 - 1
       simple_sub(value_2, value_1, result);
     else {  // |1| > |2| -> -(1 - 2)
       simple_sub(value_1, value_2, result);
@@ -139,15 +139,15 @@ int s21_sub_big(s21_big_decimal value_1, s21_big_decimal value_2,
   return err;
 }
 
-int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                s21_big_decimal *result) {
+int mul_big(big_decimal value_1, big_decimal value_2,
+                big_decimal *result) {
   to_empty_big(result);
 
   int sign_res = 0;
 
   for (int i = 0; i < (COUNT_BITS_BIG_DECIMAL - 1) * SIZE_BIT; i++) {
     if (get_bit_big(value_2, i)) {
-      s21_big_decimal n = {{0}};
+      big_decimal n = {{0}};
       n = value_1;
       move_bits_left(&n, i);
       simple_add(*result, n, result);
@@ -163,8 +163,8 @@ int s21_mul_big(s21_big_decimal value_1, s21_big_decimal value_2,
   return err;
 }
 
-int s21_div_big(s21_big_decimal value_1, s21_big_decimal value_2,
-                s21_big_decimal *result) {
+int div_big(big_decimal value_1, big_decimal value_2,
+                big_decimal *result) {
   to_empty_big(result);
 
   int sign_res = 0;
@@ -177,19 +177,19 @@ int s21_div_big(s21_big_decimal value_1, s21_big_decimal value_2,
   set_sign_big(&value_2, 0);
 
   // increasing the mantissa of the first number
-  s21_big_decimal copy_1, copy_2;
+  big_decimal copy_1, copy_2;
   copy_1 = value_1;
   copy_1.bits[6] = 0;
   copy_2 = value_2;
   copy_2.bits[6] = 0;
-  while (s21_is_less_big(copy_1, copy_2)) {
+  while (is_less_big(copy_1, copy_2)) {
     mul_by_10(&value_1, 1);
     set_scale_big(&value_1, get_scale_big(value_1) + 1);
     copy_1 = value_1;
     copy_1.bits[6] = 0;
   }
 
-  s21_big_decimal ostatok = simple_div(value_1, value_2, result);
+  big_decimal ostatok = simple_div(value_1, value_2, result);
   int scale_res = get_scale_big(value_1) - get_scale_big(value_2);
   if (scale_res >= 0)
     set_scale_big(result, scale_res);
@@ -198,7 +198,7 @@ int s21_div_big(s21_big_decimal value_1, s21_big_decimal value_2,
 
   scale_res = get_scale_big(*result);
   while (!is_zero_big(ostatok) && !get_bit_big(*result, 96)) {
-    s21_big_decimal s = {{0}};
+    big_decimal s = {{0}};
     mul_by_10(&ostatok, 1);
     mul_by_10(result, 1);
     scale_res++;
@@ -210,16 +210,16 @@ int s21_div_big(s21_big_decimal value_1, s21_big_decimal value_2,
   return err;
 }
 
-s21_big_decimal simple_div(s21_big_decimal num1, s21_big_decimal num2,
-                           s21_big_decimal *res) {
-  s21_big_decimal copy_num2 = {{0}}, ostatok = {{0}};
+big_decimal simple_div(big_decimal num1, big_decimal num2,
+                           big_decimal *res) {
+  big_decimal copy_num2 = {{0}}, ostatok = {{0}};
   to_empty_big(res);
   num1.bits[6] = 0;
   num2.bits[6] = 0;
   do {
     int q = 0;
     copy_num2 = num2;
-    while (s21_is_less_or_equal_big(copy_num2, num1)) {
+    while (is_less_or_equal_big(copy_num2, num1)) {
       move_bits_left(&copy_num2, 1);
       q++;
     }
@@ -227,17 +227,17 @@ s21_big_decimal simple_div(s21_big_decimal num1, s21_big_decimal num2,
       q--;
       move_bits_right(&copy_num2, 1);
     }
-    s21_big_decimal s = {{1}};
+    big_decimal s = {{1}};
     move_bits_left(&s, q);
     simple_add(*res, s, res);
     simple_sub(num1, copy_num2, &ostatok);
     num1 = ostatok;
-  } while (s21_is_less_or_equal_big(num2, ostatok));
+  } while (is_less_or_equal_big(num2, ostatok));
   return ostatok;
 }
 
-void simple_add(s21_big_decimal number_1, s21_big_decimal number_2,
-                s21_big_decimal *result) {
+void simple_add(big_decimal number_1, big_decimal number_2,
+                big_decimal *result) {
   int res = 0, ovf = 0;
   to_empty_big(result);
   for (int pos = 0; pos < (COUNT_BITS_BIG_DECIMAL - 1) * SIZE_BIT; pos++) {
@@ -247,9 +247,9 @@ void simple_add(s21_big_decimal number_1, s21_big_decimal number_2,
   }
 }
 
-int mul_by_10(s21_big_decimal *number, int exp) {
+int mul_by_10(big_decimal *number, int exp) {
   int err = OK;
-  s21_big_decimal copy = {{0}};
+  big_decimal copy = {{0}};
 
   for (int i = 0; i < exp; i++) {
     if (err == OK) {
@@ -264,7 +264,7 @@ int mul_by_10(s21_big_decimal *number, int exp) {
   return err;
 }
 
-int move_bits_left(s21_big_decimal *number, int n) {
+int move_bits_left(big_decimal *number, int n) {
   int err = OK;
 
   for (int j = 0; j < n; j++) {
@@ -286,7 +286,7 @@ int move_bits_left(s21_big_decimal *number, int n) {
   return err;
 }
 
-void scale_alignment(s21_big_decimal *number_1, s21_big_decimal *number_2) {
+void scale_alignment(big_decimal *number_1, big_decimal *number_2) {
   int scale_1 = get_scale_big(*number_1);
   int scale_2 = get_scale_big(*number_2);
   int sign_1 = get_sign_big(*number_1);
@@ -305,8 +305,8 @@ void scale_alignment(s21_big_decimal *number_1, s21_big_decimal *number_2) {
 
 int max(int x, int y) { return (x > y) ? x : y; }
 
-void simple_sub(s21_big_decimal number_1, s21_big_decimal number_2,
-                s21_big_decimal *result) {
+void simple_sub(big_decimal number_1, big_decimal number_2,
+                big_decimal *result) {
   to_empty_big(result);
   for (int i = 0; i < COUNT_BITS_BIG_DECIMAL - 1; i++) {
     for (int j = 0; j < SIZE_BIT; j++) {
@@ -325,15 +325,15 @@ void simple_sub(s21_big_decimal number_1, s21_big_decimal number_2,
   }
 }
 
-void to_empty(s21_decimal *number) {
+void to_empty(decimal *number) {
   for (int i = 0; i < 4; i++) number->bits[i] = 0;
 }
 
-void to_empty_big(s21_big_decimal *number) {
+void to_empty_big(big_decimal *number) {
   for (int i = 0; i < COUNT_BITS_BIG_DECIMAL; i++) number->bits[i] = 0;
 }
 
-int move_bits_right(s21_big_decimal *number, int n) {
+int move_bits_right(big_decimal *number, int n) {
   int err = OK;
 
   for (int j = 0; j < n; j++) {
@@ -354,40 +354,40 @@ int move_bits_right(s21_big_decimal *number, int n) {
   return err;
 }
 
-bool is_great_decimal(s21_big_decimal number) {
+bool is_great_decimal(big_decimal number) {
   bool res = false;
   for (int i = 3; i < COUNT_BITS_BIG_DECIMAL - 1; i++)
     if (number.bits[i] != 0) res = true;
   return res;
 }
 
-void copy_from_big_decimal_to_decimal(s21_big_decimal big, s21_decimal *num) {
+void copy_from_big_decimal_to_decimal(big_decimal big, decimal *num) {
   for (int i = 0; i < NUM_OF_MANTISSA_BITS; i++) num->bits[i] = big.bits[i];
   num->bits[3] = big.bits[6];
 }
 
-bool is_zero(s21_decimal num) {
+bool is_zero(decimal num) {
   bool res = true;
   for (int i = 0; i < NUM_OF_MANTISSA_BITS; i++)
     if (num.bits[i] != 0) res = false;
   return res;
 }
 
-bool is_zero_big(s21_big_decimal num) {
+bool is_zero_big(big_decimal num) {
   bool res = true;
   for (int i = 0; i < COUNT_BITS_BIG_DECIMAL - 1; i++)
     if (num.bits[i] != 0) res = false;
   return res;
 }
 
-int round_number(s21_big_decimal *number, int scale, int sign) {
+int round_number(big_decimal *number, int scale, int sign) {
   int err = OK;
   if (is_great_decimal(*number)) {
-    s21_big_decimal int_part = *number;
-    s21_big_decimal ten = {{1}};
+    big_decimal int_part = *number;
+    big_decimal ten = {{1}};
     mul_by_10(&ten, scale);
 
-    if (s21_is_greater_or_equal_big(int_part, ten))
+    if (is_greater_or_equal_big(int_part, ten))
       simple_div(int_part, ten, &int_part);
     else
       to_empty_big(&int_part);
@@ -398,7 +398,7 @@ int round_number(s21_big_decimal *number, int scale, int sign) {
     if (is_great_decimal(int_part))
       err = sign == 1 ? LITTLE_NUM : BIG_NUM;
     else {
-      s21_big_decimal ost = {{0}};
+      big_decimal ost = {{0}};
       while ((is_great_decimal(*number) && scale > 0) || scale > 28) {
         ost = simple_div(*number, ten, number);
         scale--;
@@ -406,18 +406,18 @@ int round_number(s21_big_decimal *number, int scale, int sign) {
 
       bool is_even = get_bit_big(int_part, 0) ? false : true;
       int fisrt_number_from_ost = 0;
-      while (s21_is_greater_or_equal_big(ost, ten)) simple_div(ost, ten, &ost);
+      while (is_greater_or_equal_big(ost, ten)) simple_div(ost, ten, &ost);
       fisrt_number_from_ost = ost.bits[0];
       if ((is_even && fisrt_number_from_ost > 5) ||
           (!is_even && fisrt_number_from_ost > 4)) {
-        s21_big_decimal one = {{1}};
+        big_decimal one = {{1}};
         simple_add(*number, one, number);
       }
     }
   } else if (scale > 28) {
-    s21_big_decimal ten = {{1}};
+    big_decimal ten = {{1}};
     mul_by_10(&ten, scale - 28);
-    if (s21_is_greater_or_equal_big(*number, ten))
+    if (is_greater_or_equal_big(*number, ten))
       simple_div(*number, ten, number);
     else
       to_empty_big(number);

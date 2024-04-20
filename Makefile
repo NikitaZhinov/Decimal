@@ -38,7 +38,7 @@ TARGET_PATH = ./
 GCOV_REPORT_PATH = ./gcov_report/
 
 # TARGETS
-TARGET = s21_decimal.a
+TARGET = decimal.a
 TARGET_TEST = test.out
 TARGET_GCOV = gcov_report.out
 

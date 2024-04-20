@@ -1,8 +1,8 @@
 #include "others.h"
 
-s21_decimal exp_ten(int ten_degree) {
-  s21_big_decimal buff = {{10, 0, 0, 0}};
-  s21_decimal result = {{0}};
+decimal exp_ten(int ten_degree) {
+  big_decimal buff = {{10, 0, 0, 0}};
+  decimal result = {{0}};
 
   if (ten_degree != 0) {
     mul_by_10(&buff, ten_degree - 1);
@@ -12,18 +12,18 @@ s21_decimal exp_ten(int ten_degree) {
   return result;
 }
 
-int div_and_round(int parametr, s21_decimal value_1, s21_decimal value_2,
-                  s21_decimal* result) {
+int div_and_round(int parametr, decimal value_1, decimal value_2,
+                  decimal* result) {
   int err = OK;
-  s21_big_decimal zero = {{0}}, ostatok = {{0}};
-  s21_big_decimal copy_1 = {{0}}, copy_2 = {{0}};
-  s21_big_decimal value_1_big = {{0}}, value_2_big = {{0}}, result_big = {{0}};
+  big_decimal zero = {{0}}, ostatok = {{0}};
+  big_decimal copy_1 = {{0}}, copy_2 = {{0}};
+  big_decimal value_1_big = {{0}}, value_2_big = {{0}}, result_big = {{0}};
 
   to_empty(result);
   fill_big_decimal(&value_1, &value_1_big);
   fill_big_decimal(&value_2, &value_2_big);
 
-  if (s21_is_equal_big(value_2_big, zero))
+  if (is_equal_big(value_2_big, zero))
     *result = value_1;
   else if (is_equal_zero(&value_1)) {
     *result = value_1;
@@ -37,7 +37,7 @@ int div_and_round(int parametr, s21_decimal value_1, s21_decimal value_2,
     copy_big_decimal(&copy_2, value_2_big);
     copy_2.bits[6] = 0;
 
-    if (s21_is_greater_big(copy_1, copy_2)) {
+    if (is_greater_big(copy_1, copy_2)) {
       ostatok = simple_div(copy_1, copy_2, &result_big);
       if (parametr == IS_FLOOR || parametr == IS_ROUND)
         err = div_ostatka(parametr, get_sign(value_1), &copy_2, &ostatok, &zero,
@@ -58,7 +58,7 @@ int div_and_round(int parametr, s21_decimal value_1, s21_decimal value_2,
   return err;
 }
 
-int is_equal_zero(s21_decimal* num) {
+int is_equal_zero(decimal* num) {
   int result = 0;
 
   for (int i = 0; i < NUM_OF_MANTISSA_BITS; i++) {
@@ -73,27 +73,27 @@ int is_equal_zero(s21_decimal* num) {
   return result;
 }
 
-int div_ostatka(int parametr, int sign, s21_big_decimal* copy_10_by_degree,
-                s21_big_decimal* ostatok, s21_big_decimal* zero,
-                s21_big_decimal* result_big, int err) {
-  if (!s21_is_equal_big(*ostatok, *zero) && err == OK) {
-    s21_big_decimal one = {{1, 0, 0, 0, 0, 0, 0}};
-    s21_big_decimal ten = {{10}};
-    s21_big_decimal one_tenth = {{0}};
-    s21_big_decimal five = {{5, 0, 0, 0, 0, 0, 0}};
+int div_ostatka(int parametr, int sign, big_decimal* copy_10_by_degree,
+                big_decimal* ostatok, big_decimal* zero,
+                big_decimal* result_big, int err) {
+  if (!is_equal_big(*ostatok, *zero) && err == OK) {
+    big_decimal one = {{1, 0, 0, 0, 0, 0, 0}};
+    big_decimal ten = {{10}};
+    big_decimal one_tenth = {{0}};
+    big_decimal five = {{5, 0, 0, 0, 0, 0, 0}};
 
     simple_div(*copy_10_by_degree, ten, copy_10_by_degree);
 
     *ostatok = simple_div(*ostatok, *copy_10_by_degree, &one_tenth);
 
     if (parametr == IS_ROUND) {
-      if (((s21_is_equal_big(five, one_tenth) &&
+      if (((is_equal_big(five, one_tenth) &&
             !(get_bit_big(*result_big, 0))) ||
-           s21_is_less_big(five, one_tenth)) &&
+           is_less_big(five, one_tenth)) &&
           (parametr == IS_ROUND))
         simple_add(one, *result_big, result_big);
     } else if ((parametr == IS_FLOOR && sign == 1) &&
-               s21_is_less_big(*zero, one_tenth))
+               is_less_big(*zero, one_tenth))
       simple_add(one, *result_big, result_big);
   }
 

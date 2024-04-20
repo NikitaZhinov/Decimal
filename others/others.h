@@ -2,7 +2,7 @@
 #define _OTHERS_H
 #include <math.h>
 
-#include "../s21_decimal.h"
+#include "../decimal.h"
 
 #define IS_TRUNCATE 4
 #define IS_ROUND 2
@@ -10,20 +10,20 @@
 
 #define ERR_CALC 1
 
-int s21_floor(s21_decimal value, s21_decimal *result);
-int s21_round(s21_decimal value, s21_decimal *result);
-int s21_truncate(s21_decimal value, s21_decimal *result);
-int s21_negate(s21_decimal value, s21_decimal *result);
+int floor(decimal value, decimal *result);
+int round(decimal value, decimal *result);
+int truncate(decimal value, decimal *result);
+int negate(decimal value, decimal *result);
 
 // custing  10^n by decimal
-s21_decimal exp_ten(int ten_degree);
+decimal exp_ten(int ten_degree);
 // dividing and round result with bank rounding
-int div_and_round(int parametr, s21_decimal value_1, s21_decimal value_2,
-                  s21_decimal *result);
+int div_and_round(int parametr, decimal value_1, decimal value_2,
+                  decimal *result);
 // supporting - dividing remainder by 10
-int div_ostatka(int parametr, int sign, s21_big_decimal *copy_10_by_degree,
-                s21_big_decimal *ostatok, s21_big_decimal *zero,
-                s21_big_decimal *result_big, int err);
-int is_equal_zero(s21_decimal *num);
+int div_ostatka(int parametr, int sign, big_decimal *copy_10_by_degree,
+                big_decimal *ostatok, big_decimal *zero,
+                big_decimal *result_big, int err);
+int is_equal_zero(decimal *num);
 
 #endif  // _OTHER_H

@@ -1,6 +1,6 @@
-#include "s21_decimal.h"
+#include "decimal.h"
 
-int get_sign(s21_decimal num) {
+int get_sign(decimal num) {
   int theSign = 0b10000000000000000000000000000000;
   int result = 0;
 
@@ -17,7 +17,7 @@ int get_sign(s21_decimal num) {
   return result;
 }
 
-void set_sign(s21_decimal *num, int sign_value) {
+void set_sign(decimal *num, int sign_value) {
   if (sign_value == 0 || sign_value == 1) {
     uint32_t mask = 1 << 31;
 
@@ -30,7 +30,7 @@ void set_sign(s21_decimal *num, int sign_value) {
   }
 }
 
-int get_scale(s21_decimal num) {
+int get_scale(decimal num) {
   int result = 0;
 
   uint32_t num_copy = num.bits[3];
@@ -44,7 +44,7 @@ int get_scale(s21_decimal num) {
   return result;
 }
 
-void set_scale(s21_decimal *num, int scale_value) {
+void set_scale(decimal *num, int scale_value) {
   if (scale_value >= 0 && scale_value <= 28) {
     int sign = get_sign(*num);
     uint32_t bit3_copy = num->bits[3];
@@ -61,11 +61,11 @@ void set_scale(s21_decimal *num, int scale_value) {
   }
 }
 
-int get_bit(s21_decimal num, int bit) {
+int get_bit(decimal num, int bit) {
   return (num.bits[bit / 32] & (1 << (bit % 32))) >> (bit % 32);
 }
 
-void set_bit(s21_decimal *num, int bit, unsigned value) {
+void set_bit(decimal *num, int bit, unsigned value) {
   if (value)
     num->bits[bit / 32] |= (1 << (bit % 32));
   else

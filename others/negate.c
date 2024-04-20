@@ -1,6 +1,6 @@
 #include "others.h"
 
-int s21_negate(s21_decimal value, s21_decimal *result) {
+int negate(decimal value, decimal *result) {
   int code = 0;
   *result = value;
 

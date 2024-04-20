@@ -1,17 +1,17 @@
 #include "converting.h"
 
 START_TEST(decimal_float_1) {
-  s21_decimal src = {{1711128977, 1850023458, 1058595328, -2145714176}};
+  decimal src = {{1711128977, 1850023458, 1058595328, -2145714176}};
   float res = 0;
-  int code = s21_from_decimal_to_float(src, &res);
+  int code = from_decimal_to_float(src, &res);
   ck_assert_int_eq(code, 0);
   // standart = -19,527637
   float standart = -19.527637;
   ck_assert_float_eq(res, standart);
-  //   s21_decimal num1 = {{1912340480, 287, 0, 458752}};
+  //   decimal num1 = {{1912340480, 287, 0, 458752}};
   //   float res = 0, ex_res = 123456.789123f, diff = 0;
 
-  //   s21_from_decimal_to_float(num1, &res);
+  //   from_decimal_to_float(num1, &res);
 
   //   diff = ex_res - res;
 
@@ -22,7 +22,7 @@ START_TEST(decimal_float_1) {
 END_TEST
 
 START_TEST(dec_to_float_1) {
-  s21_decimal number;
+  decimal number;
   // decimal: 2.0
   // float: 2
   // int: 1073741824
@@ -33,7 +33,7 @@ START_TEST(dec_to_float_1) {
   int result_int = 1073741824;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -41,7 +41,7 @@ START_TEST(dec_to_float_1) {
 END_TEST
 
 START_TEST(dec_to_float_2) {
-  s21_decimal number;
+  decimal number;
   // decimal: -0.8
   // float: -0.8
   // int: -1085485875
@@ -52,7 +52,7 @@ START_TEST(dec_to_float_2) {
   int result_int = -1085485875;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -60,7 +60,7 @@ START_TEST(dec_to_float_2) {
 END_TEST
 
 START_TEST(dec_to_float_3) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0
   // float: 0
   // int: 0
@@ -71,7 +71,7 @@ START_TEST(dec_to_float_3) {
   int result_int = 0;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -79,7 +79,7 @@ START_TEST(dec_to_float_3) {
 END_TEST
 
 START_TEST(dec_to_float_4) {
-  s21_decimal number;
+  decimal number;
   // decimal: 1
   // float: 1
   // int: 1065353216
@@ -90,7 +90,7 @@ START_TEST(dec_to_float_4) {
   int result_int = 1065353216;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -98,7 +98,7 @@ START_TEST(dec_to_float_4) {
 END_TEST
 
 START_TEST(dec_to_float_5) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.0
   // float: 0
   // int: -2147483648
@@ -109,7 +109,7 @@ START_TEST(dec_to_float_5) {
   int result_int = -2147483648;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -117,7 +117,7 @@ START_TEST(dec_to_float_5) {
 END_TEST
 
 START_TEST(dec_to_float_6) {
-  s21_decimal number;
+  decimal number;
   // decimal: -1.75
   // float: -1.75
   // int: -1075838976
@@ -128,7 +128,7 @@ START_TEST(dec_to_float_6) {
   int result_int = -1075838976;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -136,7 +136,7 @@ START_TEST(dec_to_float_6) {
 END_TEST
 
 START_TEST(dec_to_float_7) {
-  s21_decimal number;
+  decimal number;
   // decimal: 6521
   // float: 6521
   // int: 1170982912
@@ -147,7 +147,7 @@ START_TEST(dec_to_float_7) {
   int result_int = 1170982912;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -155,7 +155,7 @@ START_TEST(dec_to_float_7) {
 END_TEST
 
 START_TEST(dec_to_float_8) {
-  s21_decimal number;
+  decimal number;
   // decimal: 4
   // float: 4
   // int: 1082130432
@@ -166,7 +166,7 @@ START_TEST(dec_to_float_8) {
   int result_int = 1082130432;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -174,7 +174,7 @@ START_TEST(dec_to_float_8) {
 END_TEST
 
 START_TEST(dec_to_float_9) {
-  s21_decimal number;
+  decimal number;
   // decimal: 65658654
   // float: 6.565866E+07
   // int: 1283094472
@@ -185,7 +185,7 @@ START_TEST(dec_to_float_9) {
   int result_int = 1283094472;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -193,7 +193,7 @@ START_TEST(dec_to_float_9) {
 END_TEST
 
 START_TEST(dec_to_float_10) {
-  s21_decimal number;
+  decimal number;
   // decimal: -364748
   // float: -364748
   // int: -927852160
@@ -204,7 +204,7 @@ START_TEST(dec_to_float_10) {
   int result_int = -927852160;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -212,7 +212,7 @@ START_TEST(dec_to_float_10) {
 END_TEST
 
 START_TEST(dec_to_float_11) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.003
   // float: 0.003
   // int: 994352038
@@ -223,7 +223,7 @@ START_TEST(dec_to_float_11) {
   int result_int = 994352038;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -231,7 +231,7 @@ START_TEST(dec_to_float_11) {
 END_TEST
 
 START_TEST(dec_to_float_12) {
-  s21_decimal number;
+  decimal number;
   // decimal: -9878798789
   // float: -9.878798E+09
   // int: -804047712
@@ -242,7 +242,7 @@ START_TEST(dec_to_float_12) {
   int result_int = -804047712;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -250,7 +250,7 @@ START_TEST(dec_to_float_12) {
 END_TEST
 
 START_TEST(dec_to_float_13) {
-  s21_decimal number;
+  decimal number;
   // decimal: 9959999999999999999
   // float: 9.96E+18
   // int: 1594505479
@@ -261,7 +261,7 @@ START_TEST(dec_to_float_13) {
   int result_int = 1594505479;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -269,7 +269,7 @@ START_TEST(dec_to_float_13) {
 END_TEST
 
 START_TEST(dec_to_float_14) {
-  s21_decimal number;
+  decimal number;
   // decimal: 18446744073709551615
   // float: 1.844674E+19
   // int: 1602224128
@@ -280,7 +280,7 @@ START_TEST(dec_to_float_14) {
   int result_int = 1602224128;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -288,7 +288,7 @@ START_TEST(dec_to_float_14) {
 END_TEST
 
 START_TEST(dec_to_float_17) {
-  s21_decimal number;
+  decimal number;
   // decimal: -5454545545352456454545645464
   // float: -5.454546E+27
   // int: -309526744
@@ -299,7 +299,7 @@ START_TEST(dec_to_float_17) {
   int result_int = -309526744;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -307,7 +307,7 @@ START_TEST(dec_to_float_17) {
 END_TEST
 
 START_TEST(dec_to_float_18) {
-  s21_decimal number;
+  decimal number;
   // decimal: 79228162514264337593543950335
   // float: 7.922816E+28
   // int: 1870659584
@@ -318,7 +318,7 @@ START_TEST(dec_to_float_18) {
   int result_int = 1870659584;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -326,7 +326,7 @@ START_TEST(dec_to_float_18) {
 END_TEST
 
 START_TEST(dec_to_float_19) {
-  s21_decimal number;
+  decimal number;
   // decimal: 1234.5677987654345678987654346
   // float: 1234.568
   // int: 1150964267
@@ -337,7 +337,7 @@ START_TEST(dec_to_float_19) {
   int result_int = 1150964267;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -345,7 +345,7 @@ START_TEST(dec_to_float_19) {
 END_TEST
 
 START_TEST(dec_to_float_20) {
-  s21_decimal number;
+  decimal number;
   // decimal: -123458677.98765434567898765435
   // float: -1.234587E+08
   // int: -856982897
@@ -356,7 +356,7 @@ START_TEST(dec_to_float_20) {
   int result_int = -856982897;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -364,7 +364,7 @@ START_TEST(dec_to_float_20) {
 END_TEST
 
 START_TEST(dec_to_float_21) {
-  s21_decimal number;
+  decimal number;
   // decimal: 123445677.98765434567898765435
   // float: 1.234457E+08
   // int: 1290499126
@@ -375,7 +375,7 @@ START_TEST(dec_to_float_21) {
   int result_int = 1290499126;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -383,7 +383,7 @@ START_TEST(dec_to_float_21) {
 END_TEST
 
 START_TEST(dec_to_float_22) {
-  s21_decimal number;
+  decimal number;
   // decimal: -12345677.987654533456789876543
   // float: -1.234568E+07
   // int: -885235378
@@ -394,7 +394,7 @@ START_TEST(dec_to_float_22) {
   int result_int = -885235378;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -402,7 +402,7 @@ START_TEST(dec_to_float_22) {
 END_TEST
 
 START_TEST(dec_to_float_23) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.0000000000000000001
   // float: 1E-19
   // int: 535567946
@@ -413,7 +413,7 @@ START_TEST(dec_to_float_23) {
   int result_int = 535567946;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -421,7 +421,7 @@ START_TEST(dec_to_float_23) {
 END_TEST
 
 START_TEST(dec_to_float_24) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.0000000000000000000000000001
   // float: 1E-28
   // int: 285050806
@@ -432,7 +432,7 @@ START_TEST(dec_to_float_24) {
   int result_int = 285050806;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -440,7 +440,7 @@ START_TEST(dec_to_float_24) {
 END_TEST
 
 START_TEST(dec_to_float_25) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.0000000000000000000000000000
   // float: 0
   // int: -2147483648
@@ -451,7 +451,7 @@ START_TEST(dec_to_float_25) {
   int result_int = -2147483648;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -459,7 +459,7 @@ START_TEST(dec_to_float_25) {
 END_TEST
 
 START_TEST(dec_to_float_26) {
-  s21_decimal number;
+  decimal number;
   // decimal: -79228162514264337593543950335
   // float: -7.922816E+28
   // int: -276824064
@@ -470,7 +470,7 @@ START_TEST(dec_to_float_26) {
   int result_int = -276824064;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -478,7 +478,7 @@ START_TEST(dec_to_float_26) {
 END_TEST
 
 START_TEST(dec_to_float_27) {
-  s21_decimal number;
+  decimal number;
   // decimal: -792.28162514264337593543950335
   // float: -792.2816
   // int: -1002040826
@@ -489,7 +489,7 @@ START_TEST(dec_to_float_27) {
   int result_int = -1002040826;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -497,7 +497,7 @@ START_TEST(dec_to_float_27) {
 END_TEST
 
 START_TEST(dec_to_float_28) {
-  s21_decimal number;
+  decimal number;
   // decimal: -79228162514264337593543950335
   // float: -7.922816E+28
   // int: -276824064
@@ -508,7 +508,7 @@ START_TEST(dec_to_float_28) {
   int result_int = -276824064;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -516,7 +516,7 @@ START_TEST(dec_to_float_28) {
 END_TEST
 
 START_TEST(dec_to_float_29) {
-  s21_decimal number;
+  decimal number;
   // decimal: 2.7986531268974139743
   // float: 2.798653
   // int: 1077091618
@@ -527,7 +527,7 @@ START_TEST(dec_to_float_29) {
   int result_int = 1077091618;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -535,7 +535,7 @@ START_TEST(dec_to_float_29) {
 END_TEST
 
 START_TEST(dec_to_float_31) {
-  s21_decimal number;
+  decimal number;
   // decimal: 5.4564654654864768465454654846
   // float: 5.456465
   // int: 1085184861
@@ -546,7 +546,7 @@ START_TEST(dec_to_float_31) {
   int result_int = 1085184861;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -554,7 +554,7 @@ START_TEST(dec_to_float_31) {
 END_TEST
 
 START_TEST(dec_to_float_33) {
-  s21_decimal number;
+  decimal number;
   // decimal: -79228162514264337593543950330
   // float: -7.922816E+28
   // int: -276824064
@@ -565,7 +565,7 @@ START_TEST(dec_to_float_33) {
   int result_int = -276824064;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -573,7 +573,7 @@ START_TEST(dec_to_float_33) {
 END_TEST
 
 START_TEST(dec_to_float_34) {
-  s21_decimal number;
+  decimal number;
   // decimal: 32323465785678987654
   // float: 3.232346E+19
   // int: 1608534530
@@ -584,7 +584,7 @@ START_TEST(dec_to_float_34) {
   int result_int = 1608534530;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -592,7 +592,7 @@ START_TEST(dec_to_float_34) {
 END_TEST
 
 START_TEST(dec_to_float_35) {
-  s21_decimal number;
+  decimal number;
   // decimal: -784510454.7989898652154545652
   // float: -7.845105E+08
   // int: -834991432
@@ -603,7 +603,7 @@ START_TEST(dec_to_float_35) {
   int result_int = -834991432;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);
@@ -611,7 +611,7 @@ START_TEST(dec_to_float_35) {
 END_TEST
 
 START_TEST(dec_to_float_36) {
-  s21_decimal number;
+  decimal number;
   // decimal: 0.324524
   // float: 0.324524
   // int: 1051076610
@@ -622,7 +622,7 @@ START_TEST(dec_to_float_36) {
   int result_int = 1051076610;
   int result_error = 0;
   float my_float;
-  int my_error = s21_from_decimal_to_float(number, &my_float);
+  int my_error = from_decimal_to_float(number, &my_float);
   int my_int = *(int *)(void *)&my_float;
   ck_assert_int_eq(result_int, my_int);
   ck_assert_int_eq(result_error, my_error);

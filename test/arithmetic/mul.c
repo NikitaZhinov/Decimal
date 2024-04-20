@@ -1,25 +1,25 @@
 #include "arithmetic.h"
 
-void test_mul(s21_decimal decimal1, s21_decimal decimal2, s21_decimal check) {
-  s21_decimal result;
-  int code = s21_mul(decimal1, decimal2, &result);
+void test_mul(decimal decimal1, decimal decimal2, decimal check) {
+  decimal result;
+  int code = mul(decimal1, decimal2, &result);
 
-  ck_assert_int_eq(s21_is_equal(result, check), 1);
+  ck_assert_int_eq(is_equal(result, check), 1);
   ck_assert_int_eq(code, 0);
 }
 
-void test_mul_fail(s21_decimal decimal1, s21_decimal decimal2, int code_check) {
-  s21_decimal result;
-  int code = s21_mul(decimal1, decimal2, &result);
+void test_mul_fail(decimal decimal1, decimal decimal2, int code_check) {
+  decimal result;
+  int code = mul(decimal1, decimal2, &result);
 
   ck_assert_int_eq(code, code_check);
 }
 
 START_TEST(test_mul1) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // 26409387504754779197847983445
-  s21_decimal decimal2 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal2 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // overflow
   int code_check = 1;
 
@@ -29,9 +29,9 @@ END_TEST
 
 START_TEST(test_mul2) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // -26409387504754779197847983445
-  s21_decimal decimal2 = {{0x55555555, 0x55555555, 0x55555555, 0x80000000}};
+  decimal decimal2 = {{0x55555555, 0x55555555, 0x55555555, 0x80000000}};
   // overflow
   int code_check = 2;
 
@@ -41,9 +41,9 @@ END_TEST
 
 START_TEST(test_mul3) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // 26409387498605864508043122005
-  s21_decimal decimal2 = {{0x55555555, 0x0, 0x55555555, 0x0}};
+  decimal decimal2 = {{0x55555555, 0x0, 0x55555555, 0x0}};
   // overflow
   int code_check = 1;
 
@@ -53,9 +53,9 @@ END_TEST
 
 START_TEST(test_mul4) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // -26409387498605864508043122005
-  s21_decimal decimal2 = {{0x55555555, 0x0, 0x55555555, 0x80000000}};
+  decimal decimal2 = {{0x55555555, 0x0, 0x55555555, 0x80000000}};
   // overflow
   int code_check = 2;
 
@@ -65,9 +65,9 @@ END_TEST
 
 START_TEST(test_mul5) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // 6148914691236517205
-  s21_decimal decimal2 = {{0x55555555, 0x55555555, 0x0, 0x0}};
+  decimal decimal2 = {{0x55555555, 0x55555555, 0x0, 0x0}};
   // overflow
   int code_check = 1;
 
@@ -77,9 +77,9 @@ END_TEST
 
 START_TEST(test_mul6) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // -6148914691236517205
-  s21_decimal decimal2 = {{0x55555555, 0x55555555, 0x0, 0x80000000}};
+  decimal decimal2 = {{0x55555555, 0x55555555, 0x0, 0x80000000}};
   // overflow
   int code_check = 2;
 
@@ -89,9 +89,9 @@ END_TEST
 
 START_TEST(test_mul7) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // 6148914689804861440
-  s21_decimal decimal2 = {{0x0, 0x55555555, 0x0, 0x0}};
+  decimal decimal2 = {{0x0, 0x55555555, 0x0, 0x0}};
   // overflow
   int code_check = 1;
 
@@ -101,9 +101,9 @@ END_TEST
 
 START_TEST(test_mul8) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // -6148914689804861440
-  s21_decimal decimal2 = {{0x0, 0x55555555, 0x0, 0x80000000}};
+  decimal decimal2 = {{0x0, 0x55555555, 0x0, 0x80000000}};
   // overflow
   int code_check = 2;
 
@@ -113,9 +113,9 @@ END_TEST
 
 START_TEST(test_mul9) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // 1431655765
-  s21_decimal decimal2 = {{0x55555555, 0x0, 0x0, 0x0}};
+  decimal decimal2 = {{0x55555555, 0x0, 0x0, 0x0}};
   // overflow
   int code_check = 1;
 
@@ -125,9 +125,9 @@ END_TEST
 
 START_TEST(test_mul10) {
   // 26409387504754779197847983445
-  s21_decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
+  decimal decimal1 = {{0x55555555, 0x55555555, 0x55555555, 0x0}};
   // -1431655765
-  s21_decimal decimal2 = {{0x55555555, 0x0, 0x0, 0x80000000}};
+  decimal decimal2 = {{0x55555555, 0x0, 0x0, 0x80000000}};
   // overflow
   int code_check = 2;
 
@@ -135,8 +135,8 @@ START_TEST(test_mul10) {
 }
 END_TEST
 
-START_TEST(s21_mul_1) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_1) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 2;
   // src2 = 3;
@@ -148,7 +148,7 @@ START_TEST(s21_mul_1) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000110;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -162,8 +162,8 @@ START_TEST(s21_mul_1) {
 }
 END_TEST
 
-START_TEST(s21_mul_2) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_2) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 3;
   // src2 = 2;
@@ -175,7 +175,7 @@ START_TEST(s21_mul_2) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000110;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -189,8 +189,8 @@ START_TEST(s21_mul_2) {
 }
 END_TEST
 
-START_TEST(s21_mul_3) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_3) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0;
   // src2 = 3;
@@ -202,7 +202,7 @@ START_TEST(s21_mul_3) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -216,8 +216,8 @@ START_TEST(s21_mul_3) {
 }
 END_TEST
 
-START_TEST(s21_mul_4) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_4) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 2;
   // src2 = 0;
@@ -229,7 +229,7 @@ START_TEST(s21_mul_4) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -243,8 +243,8 @@ START_TEST(s21_mul_4) {
 }
 END_TEST
 
-START_TEST(s21_mul_6) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_6) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 2;
   // src2 = 0;
@@ -256,7 +256,7 @@ START_TEST(s21_mul_6) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -270,8 +270,8 @@ START_TEST(s21_mul_6) {
 }
 END_TEST
 
-START_TEST(s21_mul_7) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_7) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 6521;
   // src2 = 74121;
@@ -283,7 +283,7 @@ START_TEST(s21_mul_7) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00011100110011110011101011000001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -297,8 +297,8 @@ START_TEST(s21_mul_7) {
 }
 END_TEST
 
-START_TEST(s21_mul_8) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_8) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 4;
   // src2 = 97623323;
@@ -310,7 +310,7 @@ START_TEST(s21_mul_8) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00010111010001100111010001101100;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -324,8 +324,8 @@ START_TEST(s21_mul_8) {
 }
 END_TEST
 
-START_TEST(s21_mul_9) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_9) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 65658654;
   // src2 = 5;
@@ -337,7 +337,7 @@ START_TEST(s21_mul_9) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00010011100100010101101110010110;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -351,8 +351,8 @@ START_TEST(s21_mul_9) {
 }
 END_TEST
 
-START_TEST(s21_mul_10) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_10) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -364748;
   // src2 = 1;
@@ -364,7 +364,7 @@ START_TEST(s21_mul_10) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000001011001000011001100;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -378,8 +378,8 @@ START_TEST(s21_mul_10) {
 }
 END_TEST
 
-START_TEST(s21_mul_11) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_11) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 1;
   // src2 = 98745654321;
@@ -391,7 +391,7 @@ START_TEST(s21_mul_11) {
   src2.bits[1] = 0b00000000000000000000000000010110;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11111101101100110001110000110001;
   origin.bits[1] = 0b00000000000000000000000000010110;
@@ -405,8 +405,8 @@ START_TEST(s21_mul_11) {
 }
 END_TEST
 
-START_TEST(s21_mul_12) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_12) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -9878798789;
   // src2 = -3;
@@ -418,7 +418,7 @@ START_TEST(s21_mul_12) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11100110011101111000010101001111;
   origin.bits[1] = 0b00000000000000000000000000000110;
@@ -432,8 +432,8 @@ START_TEST(s21_mul_12) {
 }
 END_TEST
 
-START_TEST(s21_mul_13) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_13) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 9999999999999999999;
   // src2 = 1;
@@ -445,7 +445,7 @@ START_TEST(s21_mul_13) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b10001001111001111111111111111111;
   origin.bits[1] = 0b10001010110001110010001100000100;
@@ -459,8 +459,8 @@ START_TEST(s21_mul_13) {
 }
 END_TEST
 
-START_TEST(s21_mul_14) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_14) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 18446744073709551615;
   // src2 = 1;
@@ -472,7 +472,7 @@ START_TEST(s21_mul_14) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11111111111111111111111111111111;
   origin.bits[1] = 0b11111111111111111111111111111111;
@@ -486,8 +486,8 @@ START_TEST(s21_mul_14) {
 }
 END_TEST
 
-START_TEST(s21_mul_15) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_15) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 18446744073709551615.0;
   // src2 = 965453154;
@@ -499,7 +499,7 @@ START_TEST(s21_mul_15) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11000110011101000101101010011110;
   origin.bits[1] = 0b11111111111111111111111111111111;
@@ -513,8 +513,8 @@ START_TEST(s21_mul_15) {
 }
 END_TEST
 
-START_TEST(s21_mul_16) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_16) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -545454512454545.35265454545645;
   // src2 = 54564654;
@@ -526,7 +526,7 @@ START_TEST(s21_mul_16) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00110000111000101100110101010110;
   origin.bits[1] = 0b11011110111001111111001101111011;
@@ -541,8 +541,8 @@ START_TEST(s21_mul_16) {
 }
 END_TEST
 
-START_TEST(s21_mul_17) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_17) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -545454512454545.35265454545645;
   // src2 = -5.352654545456454545645464;
@@ -554,7 +554,7 @@ START_TEST(s21_mul_17) {
   src2.bits[1] = 0b11111011111111011000100101101101;
   src2.bits[2] = 0b00000000000001000110110101110111;
   src2.bits[3] = 0b10000000000110000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b01110001110011111110010111001111;
   origin.bits[1] = 0b01000100010011101101011110011001;
@@ -569,8 +569,8 @@ START_TEST(s21_mul_17) {
 }
 END_TEST
 
-START_TEST(s21_mul_18) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_18) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 7961327845421.879754123131254;
   // src2 = 0;
@@ -582,7 +582,7 @@ START_TEST(s21_mul_18) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -596,8 +596,8 @@ START_TEST(s21_mul_18) {
 }
 END_TEST
 
-START_TEST(s21_mul_19) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_19) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 12345677.987654345678987654346;
   // src2 = 87654323456.9876545678987653;
@@ -609,7 +609,7 @@ START_TEST(s21_mul_19) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b00000000000100000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000001010010011001000011101110;
   origin.bits[1] = 0b10101010100001010100111110001111;
@@ -623,8 +623,8 @@ START_TEST(s21_mul_19) {
 }
 END_TEST
 
-START_TEST(s21_mul_20) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_20) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -12345677.987654345678987654346;
   // src2 = 87654323456.9876545678987653;
@@ -636,7 +636,7 @@ START_TEST(s21_mul_20) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b00000000000100000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000001010010011001000011101110;
   origin.bits[1] = 0b10101010100001010100111110001111;
@@ -650,8 +650,8 @@ START_TEST(s21_mul_20) {
 }
 END_TEST
 
-START_TEST(s21_mul_21) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_21) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 12345677.987654345678987654346;
   // src2 = -87654323456.9876545678987653;
@@ -663,7 +663,7 @@ START_TEST(s21_mul_21) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b10000000000100000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000001010010011001000011101110;
   origin.bits[1] = 0b10101010100001010100111110001111;
@@ -677,8 +677,8 @@ START_TEST(s21_mul_21) {
 }
 END_TEST
 
-START_TEST(s21_mul_22) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_22) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -12345677.987654345678987654346;
   // src2 = -87654323456.9876545678987653;
@@ -690,7 +690,7 @@ START_TEST(s21_mul_22) {
   src2.bits[1] = 0b11110101101111000110111111000000;
   src2.bits[2] = 0b00000010110101010000111100111111;
   src2.bits[3] = 0b10000000000100000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000001010010011001000011101110;
   origin.bits[1] = 0b10101010100001010100111110001111;
@@ -704,8 +704,8 @@ START_TEST(s21_mul_22) {
 }
 END_TEST
 
-START_TEST(s21_mul_23) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_23) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0;
   // src2 = 0;
@@ -717,7 +717,7 @@ START_TEST(s21_mul_23) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -731,8 +731,8 @@ START_TEST(s21_mul_23) {
 }
 END_TEST
 
-START_TEST(s21_mul_24) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_24) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0;
   // src2 = 0;
@@ -744,7 +744,7 @@ START_TEST(s21_mul_24) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -758,8 +758,8 @@ START_TEST(s21_mul_24) {
 }
 END_TEST
 
-START_TEST(s21_mul_25) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_25) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0;
   // src2 = 0;
@@ -771,7 +771,7 @@ START_TEST(s21_mul_25) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -785,8 +785,8 @@ START_TEST(s21_mul_25) {
 }
 END_TEST
 
-START_TEST(s21_mul_26) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_26) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 79228162514264337593543950335;
   // src2 = -1;
@@ -798,7 +798,7 @@ START_TEST(s21_mul_26) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11111111111111111111111111111111;
   origin.bits[1] = 0b11111111111111111111111111111111;
@@ -812,8 +812,8 @@ START_TEST(s21_mul_26) {
 }
 END_TEST
 
-START_TEST(s21_mul_27) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_27) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 7922816251427554395;
   // src2 = 65645646;
@@ -825,7 +825,7 @@ START_TEST(s21_mul_27) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b01011111001100010111011110111010;
   origin.bits[1] = 0b01000100111111001101101110110001;
@@ -839,8 +839,8 @@ START_TEST(s21_mul_27) {
 }
 END_TEST
 
-START_TEST(s21_mul_28) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_28) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 665464545;
   // src2 = 8798232189789785;
@@ -852,7 +852,7 @@ START_TEST(s21_mul_28) {
   src2.bits[1] = 0b00000000000111110100000111110010;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11000100010110100111001000111001;
   origin.bits[1] = 0b01100100100011011110110011010011;
@@ -866,8 +866,8 @@ START_TEST(s21_mul_28) {
 }
 END_TEST
 
-START_TEST(s21_mul_29) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_29) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 2.7986531268974139743;
   // src2 = 9.979623121254565121244554;
@@ -879,7 +879,7 @@ START_TEST(s21_mul_29) {
   src2.bits[1] = 0b01110100000101000010011110100011;
   src2.bits[2] = 0b00000000000010000100000101000100;
   src2.bits[3] = 0b00000000000110000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b10000010010010011010001110000110;
   origin.bits[1] = 0b00001010000101010010010001010111;
@@ -893,8 +893,8 @@ START_TEST(s21_mul_29) {
 }
 END_TEST
 
-START_TEST(s21_mul_30) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_30) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -9798956154578676.797564534156;
   // src2 = -2156878451.854764;
@@ -906,7 +906,7 @@ START_TEST(s21_mul_30) {
   src2.bits[1] = 0b00000000000001111010100110101011;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b10000000000001100000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b10100010001001111101100000001001;
   origin.bits[1] = 0b01100011000100011111011101101010;
@@ -920,8 +920,8 @@ START_TEST(s21_mul_30) {
 }
 END_TEST
 
-START_TEST(s21_mul_31) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_31) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0.5456465465486476846545465485;
   // src2 = 0.68985125146545154;
@@ -933,7 +933,7 @@ START_TEST(s21_mul_31) {
   src2.bits[1] = 0b00000000111101010001010110011011;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000100010000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00101101101011010001001111000011;
   origin.bits[1] = 0b11100101011100100000101001000011;
@@ -947,8 +947,8 @@ START_TEST(s21_mul_31) {
 }
 END_TEST
 
-START_TEST(s21_mul_32) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_32) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -0.77545545454546589781;
   // src2 = 87894515154546456456;
@@ -960,7 +960,7 @@ START_TEST(s21_mul_32) {
   src2.bits[1] = 0b11000011110010000000101111011001;
   src2.bits[2] = 0b00000000000000000000000000000100;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00101100010001000110001011111110;
   origin.bits[1] = 0b10001111111010010000010001010010;
@@ -974,8 +974,8 @@ START_TEST(s21_mul_32) {
 }
 END_TEST
 
-START_TEST(s21_mul_33) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_33) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = -79228162514264337593543950335;
   // src2 = 1;
@@ -987,7 +987,7 @@ START_TEST(s21_mul_33) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b11111111111111111111111111111111;
   origin.bits[1] = 0b11111111111111111111111111111111;
@@ -1001,8 +1001,8 @@ START_TEST(s21_mul_33) {
 }
 END_TEST
 
-START_TEST(s21_mul_49) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_49) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0.0000 0000 0000 0000 0000 00000 001;
   // src2 = 0.01;
@@ -1014,7 +1014,7 @@ START_TEST(s21_mul_49) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000000100000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -1028,8 +1028,8 @@ START_TEST(s21_mul_49) {
 }
 END_TEST
 
-START_TEST(s21_mul_50) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_50) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0.00000000000000000005;
   // src2 = 0.0000000000345;
@@ -1041,7 +1041,7 @@ START_TEST(s21_mul_50) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000011010000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -1055,8 +1055,8 @@ START_TEST(s21_mul_50) {
 }
 END_TEST
 
-START_TEST(s21_mul_51) {
-  s21_decimal src1, src2, origin, result;
+START_TEST(mul_51) {
+  decimal src1, src2, origin, result;
   int value_type_result, value_type_origin;
   // src1 = 0.0000000000000000000000001567;
   // src2 = 0.000800090769;
@@ -1068,7 +1068,7 @@ START_TEST(s21_mul_51) {
   src2.bits[1] = 0b00000000000000000000000000000000;
   src2.bits[2] = 0b00000000000000000000000000000000;
   src2.bits[3] = 0b00000000000011000000000000000000;
-  value_type_result = s21_mul(src1, src2, &result);
+  value_type_result = mul(src1, src2, &result);
   value_type_origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000001;
   origin.bits[1] = 0b00000000000000000000000000000000;
@@ -1097,41 +1097,41 @@ Suite *mul_suite_create(void) {
   tcase_add_test(tcase_core, test_mul9);
   tcase_add_test(tcase_core, test_mul10);
 
-  tcase_add_test(tcase_core, s21_mul_1);
-  tcase_add_test(tcase_core, s21_mul_2);
-  tcase_add_test(tcase_core, s21_mul_3);
-  tcase_add_test(tcase_core, s21_mul_4);
-  tcase_add_test(tcase_core, s21_mul_6);
-  tcase_add_test(tcase_core, s21_mul_7);
-  tcase_add_test(tcase_core, s21_mul_8);
-  tcase_add_test(tcase_core, s21_mul_9);
-  tcase_add_test(tcase_core, s21_mul_10);
-  tcase_add_test(tcase_core, s21_mul_11);
-  tcase_add_test(tcase_core, s21_mul_12);
-  tcase_add_test(tcase_core, s21_mul_13);
-  tcase_add_test(tcase_core, s21_mul_14);
-  tcase_add_test(tcase_core, s21_mul_15);
-  tcase_add_test(tcase_core, s21_mul_16);
-  tcase_add_test(tcase_core, s21_mul_17);
-  tcase_add_test(tcase_core, s21_mul_18);
-  tcase_add_test(tcase_core, s21_mul_19);
-  tcase_add_test(tcase_core, s21_mul_20);
-  tcase_add_test(tcase_core, s21_mul_21);
-  tcase_add_test(tcase_core, s21_mul_22);
-  tcase_add_test(tcase_core, s21_mul_23);
-  tcase_add_test(tcase_core, s21_mul_24);
-  tcase_add_test(tcase_core, s21_mul_25);
-  tcase_add_test(tcase_core, s21_mul_26);
-  tcase_add_test(tcase_core, s21_mul_27);
-  tcase_add_test(tcase_core, s21_mul_28);
-  tcase_add_test(tcase_core, s21_mul_29);
-  tcase_add_test(tcase_core, s21_mul_30);
-  tcase_add_test(tcase_core, s21_mul_31);
-  tcase_add_test(tcase_core, s21_mul_32);
-  tcase_add_test(tcase_core, s21_mul_33);
-  tcase_add_test(tcase_core, s21_mul_49);
-  tcase_add_test(tcase_core, s21_mul_50);
-  tcase_add_test(tcase_core, s21_mul_51);
+  tcase_add_test(tcase_core, mul_1);
+  tcase_add_test(tcase_core, mul_2);
+  tcase_add_test(tcase_core, mul_3);
+  tcase_add_test(tcase_core, mul_4);
+  tcase_add_test(tcase_core, mul_6);
+  tcase_add_test(tcase_core, mul_7);
+  tcase_add_test(tcase_core, mul_8);
+  tcase_add_test(tcase_core, mul_9);
+  tcase_add_test(tcase_core, mul_10);
+  tcase_add_test(tcase_core, mul_11);
+  tcase_add_test(tcase_core, mul_12);
+  tcase_add_test(tcase_core, mul_13);
+  tcase_add_test(tcase_core, mul_14);
+  tcase_add_test(tcase_core, mul_15);
+  tcase_add_test(tcase_core, mul_16);
+  tcase_add_test(tcase_core, mul_17);
+  tcase_add_test(tcase_core, mul_18);
+  tcase_add_test(tcase_core, mul_19);
+  tcase_add_test(tcase_core, mul_20);
+  tcase_add_test(tcase_core, mul_21);
+  tcase_add_test(tcase_core, mul_22);
+  tcase_add_test(tcase_core, mul_23);
+  tcase_add_test(tcase_core, mul_24);
+  tcase_add_test(tcase_core, mul_25);
+  tcase_add_test(tcase_core, mul_26);
+  tcase_add_test(tcase_core, mul_27);
+  tcase_add_test(tcase_core, mul_28);
+  tcase_add_test(tcase_core, mul_29);
+  tcase_add_test(tcase_core, mul_30);
+  tcase_add_test(tcase_core, mul_31);
+  tcase_add_test(tcase_core, mul_32);
+  tcase_add_test(tcase_core, mul_33);
+  tcase_add_test(tcase_core, mul_49);
+  tcase_add_test(tcase_core, mul_50);
+  tcase_add_test(tcase_core, mul_51);
 
   suite_add_tcase(suite, tcase_core);
 

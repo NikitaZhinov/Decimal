@@ -1,12 +1,12 @@
 #include "compares.h"
 
-int sample_compare(s21_decimal num1, s21_decimal num2, int parametr) {
+int sample_compare(decimal num1, decimal num2, int parametr) {
   int compare_scales = 0;  // comparing_scales(&num1, &num2);
   int compare_bits = 0;
   int compare_signs = comparing_sign(&num1, &num2);
   int result = 1;  // assure compare is okay
 
-  s21_big_decimal big_num1 = {{0, 0, 0, 0, 0, 0, 0}},
+  big_decimal big_num1 = {{0, 0, 0, 0, 0, 0, 0}},
                   big_num2 = {{0, 0, 0, 0, 0, 0, 0}};
 
   fill_big_decimal(&num1, &big_num1);

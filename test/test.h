@@ -4,7 +4,7 @@
 #include <check.h>
 #include <stdio.h>
 
-#include "../s21_decimal.h"
+#include "../decimal.h"
 #include "arithmetic/arithmetic.h"
 #include "big_decimal/big_decimal.h"
 #include "compares/compares.h"

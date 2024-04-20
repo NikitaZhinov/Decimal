@@ -1,13 +1,13 @@
 #include "others.h"
 
 START_TEST(negate_1) {
-  s21_decimal num = {{0, 0, 10, 0b00000000000000110000000000000000}};
-  s21_decimal ex_result = {{0, 0, 10, 0b10000000000000110000000000000000}};
-  s21_decimal res = {{0}};
+  decimal num = {{0, 0, 10, 0b00000000000000110000000000000000}};
+  decimal ex_result = {{0, 0, 10, 0b10000000000000110000000000000000}};
+  decimal res = {{0}};
 
   int exepted_result = 1, real_result = 0;
 
-  s21_negate(num, &res);
+  negate(num, &res);
 
   for (int i = 0; i <= NUM_OF_MANTISSA_BITS; i++) {
     real_result = (ex_result.bits[i] == res.bits[i]);
@@ -18,13 +18,13 @@ START_TEST(negate_1) {
 END_TEST
 
 START_TEST(negate_2) {
-  s21_decimal num = {{0, 1, 0, 0b10000000000000110000000000000000}};
-  s21_decimal ex_result = {{0, 1, 0, 0b00000000000000110000000000000000}};
-  s21_decimal res = {{0}};
+  decimal num = {{0, 1, 0, 0b10000000000000110000000000000000}};
+  decimal ex_result = {{0, 1, 0, 0b00000000000000110000000000000000}};
+  decimal res = {{0}};
 
   int exepted_result = 1, real_result = 0;
 
-  s21_negate(num, &res);
+  negate(num, &res);
 
   for (int i = 0; i <= NUM_OF_MANTISSA_BITS; i++) {
     real_result = (ex_result.bits[i] == res.bits[i]);

@@ -1,16 +1,16 @@
-#include "../s21_decimal.h"
+#include "../decimal.h"
 /**
- * @brief This function converting number from s21_decimal to float value
+ * @brief This function converting number from decimal to float value
  *
  * In loop:
  * Every bit of decimal convert to double, every bit multiple as 2 powered by
  * number of bit position
  *
- * @param src s21_decimal binary value
+ * @param src decimal binary value
  * @param dst result float value as pointer
  * @return ERROR int value
  */
-int s21_from_decimal_to_float(s21_decimal src, float *dst) {
+int from_decimal_to_float(decimal src, float *dst) {
   int err = OK;
 
   if (dst == NULL) {

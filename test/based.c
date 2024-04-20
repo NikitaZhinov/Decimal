@@ -1,7 +1,7 @@
 #include "test.h"
 
 START_TEST(get_sign_1) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
   int exepted_result = 1, real_result = get_sign(num);
 
   ck_assert_int_eq(exepted_result, real_result);
@@ -9,7 +9,7 @@ START_TEST(get_sign_1) {
 END_TEST
 
 START_TEST(get_sign_2) {
-  s21_decimal num = {{0, 0, 0, 0b00000000000111010000000000000000}};
+  decimal num = {{0, 0, 0, 0b00000000000111010000000000000000}};
   int exepted_result = 0, real_result = get_sign(num);
 
   ck_assert_int_eq(exepted_result, real_result);
@@ -17,7 +17,7 @@ START_TEST(get_sign_2) {
 END_TEST
 
 START_TEST(set_sign_1) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
   set_sign(&num, 1);
   int exepted_result = 1, real_result = get_sign(num);
 
@@ -26,7 +26,7 @@ START_TEST(set_sign_1) {
 END_TEST
 
 START_TEST(set_sign_2) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000111010000000000000000}};
   set_sign(&num, 0);
   int exepted_result = 0, real_result = get_sign(num);
 
@@ -35,7 +35,7 @@ START_TEST(set_sign_2) {
 END_TEST
 
 START_TEST(get_scale_1) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000110010000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000110010000000000000000}};
   int exepted_result = 0b11001, real_result = get_scale(num);
 
   ck_assert_int_eq(exepted_result, real_result);
@@ -43,7 +43,7 @@ START_TEST(get_scale_1) {
 END_TEST
 
 START_TEST(set_scale_1) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000000000000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000000000000000000000000}};
   set_scale(&num, 0b11001);
   int exepted_result = 0b11001, real_result = get_scale(num);
 
@@ -52,7 +52,7 @@ START_TEST(set_scale_1) {
 END_TEST
 
 START_TEST(get_bit_1) {
-  s21_decimal num = {{0, 0b10000000000110010000000000000001, 0,
+  decimal num = {{0, 0b10000000000110010000000000000001, 0,
                       0b10000000000110010000000000000000}};
   int exepted_result = 1, real_result = get_bit(num, 32);
 
@@ -61,7 +61,7 @@ START_TEST(get_bit_1) {
 END_TEST
 
 START_TEST(set_bit_1) {
-  s21_decimal num = {{0, 0, 0, 0b10000000000110010000000000000000}};
+  decimal num = {{0, 0, 0, 0b10000000000110010000000000000000}};
   set_bit(&num, 32, 1);
   int exepted_result = 1, real_result = get_bit(num, 32);
 
