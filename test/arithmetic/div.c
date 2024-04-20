@@ -2,7 +2,7 @@
 
 void test_div(decimal decimal1, decimal decimal2, decimal check) {
   decimal result;
-  int code = div(decimal1, decimal2, &result);
+  int code = decimal_div(decimal1, decimal2, &result);
 
   ck_assert_int_eq(is_equal(result, check), 1);
   ck_assert_int_eq(code, 0);
@@ -122,8 +122,7 @@ START_TEST(test_div10) {
   // -39614081257132168798919458816
   decimal decimal2 = {{0x80000000, 0x0, 0x80000000, 0x80000000}};
   // -1.9999999999999999998915797827
-  decimal decimal_check = {
-      {0xDF606343, 0x7C4A04C1, 0x409F9CBC, 0x801C0000}};
+  decimal decimal_check = {{0xDF606343, 0x7C4A04C1, 0x409F9CBC, 0x801C0000}};
 
   test_div(decimal1, decimal2, decimal_check);
 }
@@ -146,7 +145,7 @@ START_TEST(div_1) {
   origin.bits[1] = 0b00000000000000000000000000000010;
   origin.bits[2] = 0b00000000000000000000000000000000;
   origin.bits[3] = 0b00000000000000000000000000000000;
-  int check = div(src1, src2, &result);
+  int check = decimal_div(src1, src2, &result);
   int check_origin = 0;
   ck_assert_int_eq(check, check_origin);
   ck_assert_int_eq(result.bits[3], origin.bits[3]);
@@ -173,7 +172,7 @@ START_TEST(div_2) {
   origin.bits[1] = 0b00000000000000000000000000000000;
   origin.bits[2] = 0b00000000000000000000000000000000;
   origin.bits[3] = 0b10000000000000000000000000000000;
-  int check = div(src1, src2, &result);
+  int check = decimal_div(src1, src2, &result);
   int check_origin = 0;
   ck_assert_int_eq(check, check_origin);
   ck_assert_int_eq(result.bits[3], origin.bits[3]);
@@ -200,7 +199,7 @@ START_TEST(div_3) {
   origin.bits[1] = 0b00000000000000000000000000000000;
   origin.bits[2] = 0b00000000000000000000000000000000;
   origin.bits[3] = 0b00000000000000000000000000000000;
-  int check = div(src1, src2, &result);
+  int check = decimal_div(src1, src2, &result);
   int check_origin = 0;
   ck_assert_int_eq(check, check_origin);
   ck_assert_int_eq(result.bits[3], origin.bits[3]);
@@ -227,7 +226,7 @@ START_TEST(div_4) {
   origin.bits[1] = 0b00000000000000000000000000000011;
   origin.bits[2] = 0b00000000000000000000000000000000;
   origin.bits[3] = 0b10000000000000000000000000000000;
-  int check = div(src1, src2, &result);
+  int check = decimal_div(src1, src2, &result);
   int check_origin = 0;
   ck_assert_int_eq(check, check_origin);
   ck_assert_int_eq(result.bits[3], origin.bits[3]);
@@ -254,7 +253,7 @@ START_TEST(div_5) {
   origin.bits[1] = 0b00000000000000000000000000000000;
   origin.bits[2] = 0b00000000000000000000000000000000;
   origin.bits[3] = 0b00000000000000000000000000000000;
-  int check = div(src1, src2, &result);
+  int check = decimal_div(src1, src2, &result);
   int check_origin = 0;
   ck_assert_int_eq(check, check_origin);
   ck_assert_int_eq(result.bits[3], origin.bits[3]);

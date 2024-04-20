@@ -7,7 +7,7 @@ int sample_compare(decimal num1, decimal num2, int parametr) {
   int result = 1;  // assure compare is okay
 
   big_decimal big_num1 = {{0, 0, 0, 0, 0, 0, 0}},
-                  big_num2 = {{0, 0, 0, 0, 0, 0, 0}};
+              big_num2 = {{0, 0, 0, 0, 0, 0, 0}};
 
   fill_big_decimal(&num1, &big_num1);
   fill_big_decimal(&num2, &big_num2);

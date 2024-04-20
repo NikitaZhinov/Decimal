@@ -1,7 +1,6 @@
 #include "big_decimal.h"
 
-int sample_compare_big(big_decimal num1, big_decimal num2,
-                       int parametr) {
+int sample_compare_big(big_decimal num1, big_decimal num2, int parametr) {
   int compare_scales = 0;
   int compare_bits = 0;
   int compare_signs = compare_signs_big(&num1, &num2);

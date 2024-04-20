@@ -48,7 +48,7 @@ int mul(decimal value_1, decimal value_2, decimal *result) {
   return err;
 }
 
-int div(decimal value_1, decimal value_2, decimal *result) {
+int decimal_div(decimal value_1, decimal value_2, decimal *result) {
   int err = OK;
 
   if (is_zero(value_2))
@@ -70,8 +70,7 @@ int div(decimal value_1, decimal value_2, decimal *result) {
   return err;
 }
 
-int add_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result) {
+int add_big(big_decimal value_1, big_decimal value_2, big_decimal *result) {
   to_empty_big(result);
 
   int err = OK;
@@ -98,8 +97,7 @@ int add_big(big_decimal value_1, big_decimal value_2,
   return err;
 }
 
-int sub_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result) {
+int sub_big(big_decimal value_1, big_decimal value_2, big_decimal *result) {
   to_empty_big(result);
 
   scale_alignment(&value_1, &value_2);
@@ -139,8 +137,7 @@ int sub_big(big_decimal value_1, big_decimal value_2,
   return err;
 }
 
-int mul_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result) {
+int mul_big(big_decimal value_1, big_decimal value_2, big_decimal *result) {
   to_empty_big(result);
 
   int sign_res = 0;
@@ -163,8 +160,7 @@ int mul_big(big_decimal value_1, big_decimal value_2,
   return err;
 }
 
-int div_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result) {
+int div_big(big_decimal value_1, big_decimal value_2, big_decimal *result) {
   to_empty_big(result);
 
   int sign_res = 0;
@@ -210,8 +206,7 @@ int div_big(big_decimal value_1, big_decimal value_2,
   return err;
 }
 
-big_decimal simple_div(big_decimal num1, big_decimal num2,
-                           big_decimal *res) {
+big_decimal simple_div(big_decimal num1, big_decimal num2, big_decimal *res) {
   big_decimal copy_num2 = {{0}}, ostatok = {{0}};
   to_empty_big(res);
   num1.bits[6] = 0;

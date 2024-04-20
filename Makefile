@@ -119,12 +119,10 @@ clean :
 	rm -rf $(TARGET_PATH)$(TARGET) $(TARGET_PATH)$(TARGET_TEST) $(OBJ_PATH) $(GCOV_REPORT_PATH)
 
 clang-format :
-	cp ../materials/linters/.clang-format .clang-format
 	clang-format -i $(SRC) $(SRC_ARITHEMTIC) $(SRC_BIG_DECIMAL) $(SRC_COMPARES) $(SRC_OTHERS) $(SRC_CONVERTING)
 	clang-format -i $(TEST_SRC) $(TEST_SRC_ARITHMETIC) $(TEST_SRC_BIG_DECIMAL) $(TEST_SRC_COMPARES) $(TEST_SRC_OTHERS) $(TEST_SRC_CONVERTING)
 	clang-format -i $(HDRS) $(HDRS_ARITHEMTIC) $(HDRS_BIG_DECIMAL) $(HDRS_COMPARES) $(HDRS_OTHERS) $(HDRS_CONVERTING)
 	clang-format -i $(TEST_HDRS) $(TEST_HDRS_ARITHMETIC) $(TEST_HDRS_BIG_DECIMAL) $(TEST_HDRS_COMPARES) $(TEST_HDRS_OTHERS) $(TEST_HDRS_CONVERTING)
-	rm -rf .clang-format
 
 rebuild : clean $(TARGET)
 

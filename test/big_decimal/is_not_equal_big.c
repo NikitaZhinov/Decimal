@@ -1,10 +1,8 @@
 #include "big_decimal.h"
 
 START_TEST(is_not_equal_big_1) {
-  big_decimal num1 = {
-      {0, 0, 10, 0, 0, 0, 0b00000000000000110000000000000000}};
-  big_decimal num2 = {
-      {0, 0, 101, 0, 0, 0, 0b10000000000000100000000000000000}};
+  big_decimal num1 = {{0, 0, 10, 0, 0, 0, 0b00000000000000110000000000000000}};
+  big_decimal num2 = {{0, 0, 101, 0, 0, 0, 0b10000000000000100000000000000000}};
 
   int exepted_result = 1, real_result = is_not_equal_big(num1, num2);
 

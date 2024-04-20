@@ -87,8 +87,7 @@ int div_ostatka(int parametr, int sign, big_decimal* copy_10_by_degree,
     *ostatok = simple_div(*ostatok, *copy_10_by_degree, &one_tenth);
 
     if (parametr == IS_ROUND) {
-      if (((is_equal_big(five, one_tenth) &&
-            !(get_bit_big(*result_big, 0))) ||
+      if (((is_equal_big(five, one_tenth) && !(get_bit_big(*result_big, 0))) ||
            is_less_big(five, one_tenth)) &&
           (parametr == IS_ROUND))
         simple_add(one, *result_big, result_big);

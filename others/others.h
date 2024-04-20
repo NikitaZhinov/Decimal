@@ -10,8 +10,8 @@
 
 #define ERR_CALC 1
 
-int floor(decimal value, decimal *result);
-int round(decimal value, decimal *result);
+int decimal_floor(decimal value, decimal *result);
+int decimal_round(decimal value, decimal *result);
 int truncate(decimal value, decimal *result);
 int negate(decimal value, decimal *result);
 

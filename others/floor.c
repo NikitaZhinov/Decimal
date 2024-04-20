@@ -1,6 +1,6 @@
 #include "others.h"
 
-int floor(decimal value, decimal *result) {
+int decimal_floor(decimal value, decimal *result) {
   decimal exp_tens = exp_ten(get_scale(value));
 
   int max_scale = 28;

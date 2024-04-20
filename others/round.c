@@ -1,6 +1,6 @@
 #include "others.h"
 
-int round(decimal value, decimal *result) {
+int decimal_round(decimal value, decimal *result) {
   decimal exp_tens = exp_ten(get_scale(value));
 
   int max_scale = 28;

@@ -33,8 +33,7 @@ START_TEST(int_decimal_2) {
 START_TEST(int_decimal_3) {
   int num_int = -2005;
   decimal res = {{0}};
-  decimal exept_decimal = {
-      {2005, 0, 0, 0b10000000000000000000000000000000}};
+  decimal exept_decimal = {{2005, 0, 0, 0b10000000000000000000000000000000}};
 
   int exepted_result = 1, real_result = 0;
   from_int_to_decimal(num_int, &res);

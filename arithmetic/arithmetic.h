@@ -18,16 +18,12 @@
 int add(decimal value_1, decimal value_2, decimal *result);
 int sub(decimal value_1, decimal value_2, decimal *result);
 int mul(decimal value_1, decimal value_2, decimal *result);
-int div(decimal value_1, decimal value_2, decimal *result);
+int decimal_div(decimal value_1, decimal value_2, decimal *result);
 
-int add_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result);
-int sub_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result);
-int mul_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result);
-int div_big(big_decimal value_1, big_decimal value_2,
-                big_decimal *result);
+int add_big(big_decimal value_1, big_decimal value_2, big_decimal *result);
+int sub_big(big_decimal value_1, big_decimal value_2, big_decimal *result);
+int mul_big(big_decimal value_1, big_decimal value_2, big_decimal *result);
+int div_big(big_decimal value_1, big_decimal value_2, big_decimal *result);
 
 void simple_add(big_decimal number_1, big_decimal number_2,
                 big_decimal *result);         // addition of mantissas
@@ -45,8 +41,7 @@ void to_empty(decimal *number);
 void to_empty_big(big_decimal *number);
 int move_bits_right(big_decimal *number,
                     int n);  // shift the bits to the right
-big_decimal simple_div(big_decimal num1, big_decimal num2,
-                           big_decimal *res);
+big_decimal simple_div(big_decimal num1, big_decimal num2, big_decimal *res);
 bool is_great_decimal(big_decimal number);
 void copy_from_big_decimal_to_decimal(big_decimal big, decimal *num);
 bool is_zero(decimal num);

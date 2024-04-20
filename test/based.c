@@ -53,7 +53,7 @@ END_TEST
 
 START_TEST(get_bit_1) {
   decimal num = {{0, 0b10000000000110010000000000000001, 0,
-                      0b10000000000110010000000000000000}};
+                  0b10000000000110010000000000000000}};
   int exepted_result = 1, real_result = get_bit(num, 32);
 
   ck_assert_int_eq(exepted_result, real_result);

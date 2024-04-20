@@ -30,8 +30,7 @@ int is_less_big(big_decimal num1, big_decimal num2);
 int is_not_equal_big(big_decimal num1, big_decimal num2);
 
 // parametrs_comparing_func
-int sample_compare_big(big_decimal num1, big_decimal num2,
-                       int parametr);
+int sample_compare_big(big_decimal num1, big_decimal num2, int parametr);
 
 // only for big_decimal: 0 - equal, 1 - num1 greater num2, -1 - num2 greater
 // num1

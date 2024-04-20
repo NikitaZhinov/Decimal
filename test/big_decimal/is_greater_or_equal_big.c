@@ -1,10 +1,8 @@
 #include "big_decimal.h"
 
 START_TEST(is_greater_or_equal_big_1) {
-  big_decimal num1 = {
-      {0, 0, 101, 0, 0, 0, 0b00000000000111000000000000000000}};
-  big_decimal num2 = {
-      {0, 0, 101, 0, 0, 0, 0b00000000000000110000000000000000}};
+  big_decimal num1 = {{0, 0, 101, 0, 0, 0, 0b00000000000111000000000000000000}};
+  big_decimal num2 = {{0, 0, 101, 0, 0, 0, 0b00000000000000110000000000000000}};
 
   int exepted_result = 0, real_result = is_greater_or_equal_big(num1, num2);
 
@@ -17,10 +15,8 @@ START_TEST(is_greater_or_equal_big_1) {
 END_TEST
 
 START_TEST(is_greater_or_equal_big_2) {
-  big_decimal num1 = {
-      {0, 0, 101, 0, 0, 0, 0b00000000000111100000000000000000}};
-  big_decimal num2 = {
-      {0, 0, 101, 0, 0, 0, 0b00000000000111100000000000000000}};
+  big_decimal num1 = {{0, 0, 101, 0, 0, 0, 0b00000000000111100000000000000000}};
+  big_decimal num2 = {{0, 0, 101, 0, 0, 0, 0b00000000000111100000000000000000}};
 
   int exepted_result = 0, real_result = is_greater_or_equal_big(num1, num2);
 

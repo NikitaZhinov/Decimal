@@ -7,7 +7,7 @@ START_TEST(floor_1) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000000010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 5;
   origin.bits[0] = 0b00000000000000000000000000000101;
@@ -29,7 +29,7 @@ START_TEST(floor_2) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000000010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 3;
   origin.bits[0] = 0b00000000000000000000000000000011;
@@ -51,7 +51,7 @@ START_TEST(floor_3) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000000010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -73,7 +73,7 @@ START_TEST(floor_4) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000001110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -3;
   origin.bits[0] = 0b00000000000000000000000000000011;
@@ -95,7 +95,7 @@ START_TEST(floor_5) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000000010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 0;
   origin.bits[0] = 0b00000000000000000000000000000000;
@@ -117,7 +117,7 @@ START_TEST(floor_6) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000000100000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -1;
   origin.bits[0] = 0b00000000000000000000000000000001;
@@ -139,7 +139,7 @@ START_TEST(floor_7) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000001010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 652;
   origin.bits[0] = 0b00000000000000000000001010001100;
@@ -161,7 +161,7 @@ START_TEST(floor_8) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000010000000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 4;
   origin.bits[0] = 0b00000000000000000000000000000100;
@@ -183,7 +183,7 @@ START_TEST(floor_9) {
   src.bits[1] = 0b00000000000000000000000000000001;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000000100000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 65658654;
   origin.bits[0] = 0b00000011111010011101111100011110;
@@ -205,7 +205,7 @@ START_TEST(floor_10) {
   src.bits[1] = 0b00000000000000000000000000000000;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000000110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -364749;
   origin.bits[0] = 0b00000000000001011001000011001101;
@@ -227,7 +227,7 @@ START_TEST(floor_11) {
   src.bits[1] = 0b00000000000000000001001000010011;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b00000000000011010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 1;
   origin.bits[0] = 0b00000000000000000000000000000001;
@@ -249,7 +249,7 @@ START_TEST(floor_12) {
   src.bits[1] = 0b00000000000000000000100011111100;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000010110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -99;
   origin.bits[0] = 0b00000000000000000000000001100011;
@@ -271,7 +271,7 @@ START_TEST(floor_13) {
   src.bits[1] = 0b00011001111000001100100110111010;
   src.bits[2] = 0b00000000000000000000001000011110;
   src.bits[3] = 0b00000000000000010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 999999999999999999911;
   origin.bits[0] = 0b11011110100111111111111110100111;
@@ -293,7 +293,7 @@ START_TEST(floor_14) {
   src.bits[1] = 0b11111001111010000010010110101101;
   src.bits[2] = 0b10110000001111101111000010010100;
   src.bits[3] = 0b10000000000011100000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -545454512454546;
   origin.bits[0] = 0b10000110011101001011101110010010;
@@ -315,7 +315,7 @@ START_TEST(floor_15) {
   src.bits[1] = 0b11111001111010000010010110101101;
   src.bits[2] = 0b10110000001111101111000010010100;
   src.bits[3] = 0b00000000000011100000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 545454512454545;
   origin.bits[0] = 0b10000110011101001011101110010001;
@@ -337,7 +337,7 @@ START_TEST(floor_16) {
   src.bits[1] = 0b01001011001101011010000111011001;
   src.bits[2] = 0b00011001101110010111010010111111;
   src.bits[3] = 0b00000000000011110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 7961327845421;
   origin.bits[0] = 0b10100100000111100100000000101101;
@@ -359,7 +359,7 @@ START_TEST(floor_17) {
   src.bits[1] = 0b11000000010001011101010111110010;
   src.bits[2] = 0b00100111111001000001101100000000;
   src.bits[3] = 0b00000000000101010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 12345677;
   origin.bits[0] = 0b00000000101111000110000101001101;
@@ -381,7 +381,7 @@ START_TEST(floor_18) {
   src.bits[1] = 0b11000000010001011101010111110010;
   src.bits[2] = 0b00100111111001000001101100000000;
   src.bits[3] = 0b10000000000101010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -12345678;
   origin.bits[0] = 0b00000000101111000110000101001110;
@@ -403,7 +403,7 @@ START_TEST(floor_19) {
   src.bits[1] = 0b11110101101111000110111111000000;
   src.bits[2] = 0b00000010110101010000111100111111;
   src.bits[3] = 0b00000000000100000000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 87654323456;
   origin.bits[0] = 0b01101000100110101101010100000000;
@@ -425,7 +425,7 @@ START_TEST(floor_20) {
   src.bits[1] = 0b00111111110101011110000010001011;
   src.bits[2] = 0b00000000000000000100011101000101;
   src.bits[3] = 0b00000000000010010000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 336565445454313;
   origin.bits[0] = 0b10111111110100011110100111101001;
@@ -447,7 +447,7 @@ START_TEST(floor_21) {
   src.bits[1] = 0b00000000000000000000111000001110;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000000000000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -15456451234534;
   origin.bits[0] = 0b10111100010010010000101011100110;
@@ -469,7 +469,7 @@ START_TEST(floor_22) {
   src.bits[1] = 0b00000000000000000000000000001001;
   src.bits[2] = 0b00000000000000000000000000000000;
   src.bits[3] = 0b10000000000010110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = -1;
   origin.bits[0] = 0b00000000000000000000000000000001;
@@ -491,7 +491,7 @@ START_TEST(floor_23) {
   src.bits[1] = 0b11111111111111111111111111111111;
   src.bits[2] = 0b11111111111111111111111111111111;
   src.bits[3] = 0b00000000000000000000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 79228162514264337593543950335;
   origin.bits[0] = 0b11111111111111111111111111111111;
@@ -513,7 +513,7 @@ START_TEST(floor_24) {
   src.bits[1] = 0b10000100011001000010000111101000;
   src.bits[2] = 0b00000000000000000000000000000001;
   src.bits[3] = 0b00000000000100110000000000000000;
-  int check = floor(src, &result);
+  int check = decimal_floor(src, &result);
   int check_origin = 0;
   // origin = 2;
   origin.bits[0] = 0b00000000000000000000000000000010;
